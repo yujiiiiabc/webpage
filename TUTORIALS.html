@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUTORIALS</title>
+    <link rel="stylesheet" href="style/style1.css">
+  <a href="index.html"><h1>TUTORIALS</h1></a>
+
+    <div class="tutorials" onclick="openLightbox(event)">
+
+            <video src="video/V1.mp4" 
+            alt="Image 1">
+            
+  
+    </div>
+
+
+
+    
+    <div id="lightbox">
+        
+        <span id="close-btn" onclick="closeLightbox()">&times;</span>
+
+        
+        <img id="lightbox-img" src="" alt="lightbox image">
+
+        
+        <div id="thumbnail-container">
+            
+        </div>
+
+      
+        <button id="prev-btn" onclick="changeImage(-1)">&lt; Prev</button>
+        <button id="next-btn" onclick="changeImage(1)">Next &gt;</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery img');
+        const totalImages = images.length;
+
+        function openLightbox(event) {
+            if (event.target.tagName === 'IMG') {
+                const clickedIndex = Array.from(images).indexOf(event.target);
+                currentIndex = clickedIndex;
+                updateLightboxImage();
+                document.getElementById('lightbox').style.display = 'flex';
+            }
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+    
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            }
+            updateLightboxImage();
+        }
+
+
+        function updateLightboxImage() {
+            const lightboxImg = document.getElementById('lightbox-img');
+            const thumbnailContainer = document.getElementById('thumbnail-container');
+
+            lightboxImg.src = images[currentIndex].src;
+
+       
+        }
+
+
+    </script>
+
+
+  <footer>
+    <center><section class=" footer_section ">
+        <p>
+          &copy; 2024  
+          <a href="">humcom sub</a>
+        </p>
+      </section></center>
+  </footer>
+ 

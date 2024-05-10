@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+<link rel="stylesheet" href="style/style1.css">
+  
+
+
+<a href="index.html"><h1>FOODS</h1></a>
+
+    <div class="gallery" onclick="openLightbox(event)">
+            <img src="images/5.jpg" 
+            alt="Image 1">
+            <img src="images/6.jpg"
+            alt="Image 2">
+            <img src="images/7.jpg"
+            alt="Image 3">
+            <img src="images/8.jpg"
+            alt="Image 4">
+            <img src="images/9.jpg"
+            alt="Image 5">
+            <img src="images/10.jpg"
+            alt="Image 6">
+            <img src="images/11.jpg"
+            alt="Image 7">
+            <img src="images/12.jpg"
+            alt="Image 8">
+            <img src="images/13.jpg"
+            alt="Image 9">
+            <img src="images/14.jpg"
+            alt="Image 10">
+            <img src="images/15.jpg"
+            alt="Image 11">
+            <img src="images/16.jpg"
+            alt="Image 12">
+            
+  
+    </div>
+
+
+
+    
+    <div id="lightbox">
+        
+        <span id="close-btn" onclick="closeLightbox()">&times;</span>
+
+        
+        <img id="lightbox-img" src="" alt="lightbox image">
+
+        
+        <div id="thumbnail-container">
+            
+        </div>
+
+      
+        <button id="prev-btn" onclick="changeImage(-1)">&lt; Prev</button>
+        <button id="next-btn" onclick="changeImage(1)">Next &gt;</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery img');
+        const totalImages = images.length;
+
+        function openLightbox(event) {
+            if (event.target.tagName === 'IMG') {
+                const clickedIndex = Array.from(images).indexOf(event.target);
+                currentIndex = clickedIndex;
+                updateLightboxImage();
+                document.getElementById('lightbox').style.display = 'flex';
+            }
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+    
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            }
+            updateLightboxImage();
+        }
+
+
+        function updateLightboxImage() {
+            const lightboxImg = document.getElementById('lightbox-img');
+            const thumbnailContainer = document.getElementById('thumbnail-container');
+
+            lightboxImg.src = images[currentIndex].src;
+
+       
+        }
+
+
+    </script>
